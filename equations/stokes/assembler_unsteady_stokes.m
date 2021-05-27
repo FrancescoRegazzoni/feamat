@@ -1,6 +1,6 @@
 function [H,B,b] = assembler_unsteady_stokes(fespace_u,fespace_p,fun,nu,dirichlet_functions,neumann_functions,dt)
 % Assemble steady unsteady stokes matrix and rhs with boundary conditions.
-% Implicit Euler method is used for time discretization.
+% Backward Euler method is used for time discretization.
 % input=
 %           fespace_u: finite elemnet space for velocity
 %           fespace_p: finite elemnet space for pressure
@@ -13,7 +13,8 @@ function [H,B,b] = assembler_unsteady_stokes(fespace_u,fespace_p,fun,nu,dirichle
 %           dt: Time step size
 % output=
 %           H: system matrix
-%           b: right handside
+%           B: right-hand side matrix (multiplying state at previous time)
+%           b: right-hand side
 
 [H,b] = assembler_steady_stokes(fespace_u,fespace_p,fun,nu,dirichlet_functions,neumann_functions);
 
